@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/assets/images/phaserjs-logo.jpg" alt="Phaser" width="240">
+  <img src="./public/assets/images/phaserjs-logo.png" alt="Phaser" width="480">
 </p>
 
 # Phaser + TypeScript AI-First Starter
