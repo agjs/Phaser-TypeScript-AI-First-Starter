@@ -11,6 +11,8 @@
 ### Bug Fixes
 
 * address PR [#6](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/issues/6) review — action pinning, wall render, AABB collision ([8f39eed](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/commit/8f39eed506f41e23e51505e229dd4c97abb6abec))
+* **ci:** auto-enable GitHub Pages on first deploy ([ab9968e](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/commit/ab9968e56ef7269e25867a60f2ff6c947741881d))
+* **ci:** auto-enable GitHub Pages on first deploy ([088a2e9](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/commit/088a2e96a9fabfba7768fb696a885f9eec3a736d))
 * reset-resilient wall-collision grid + wall-layer redraw ([608e6e3](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/commit/608e6e3051657d260f5bd8cfc26bf4cbe9d6fd0e))
 * scope GITHUB_TOKEN permissions per workflow ([b6d233a](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/commit/b6d233a876f3ce4d905dd87d9b86b05d0064c062))
 * update Phaser logo in README and replace JPG with PNG ([9947440](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/commit/9947440d386941a8dac309b1b3ffa9a3733ee5fe))
