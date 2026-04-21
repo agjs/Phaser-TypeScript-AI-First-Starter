@@ -3,7 +3,12 @@ import { PLAYER_HALF_EXTENT_PX, type PlayerState } from '@domain/player';
 import { isBlocked, type TileTypeLookup } from '@domain/wall';
 
 export interface IWallCollisionFeatureDeps {
-  readonly grid: GridState;
+  /**
+   * A getter so the feature reflects the current grid even if the caller
+   * replaces the aggregate (e.g. on scene reset). Accepts a `GridState` for
+   * callers with a static grid.
+   */
+  readonly grid: GridState | (() => GridState);
   readonly tileTypes: TileTypeLookup;
   /**
    * Half the player's AABB extent on each axis, in world pixels.
@@ -27,8 +32,11 @@ export const createWallCollisionFeature = (
   deps: IWallCollisionFeatureDeps,
 ): IWallCollisionFeature => {
   const halfExtent = deps.playerHalfExtent ?? PLAYER_HALF_EXTENT_PX;
+  const getGrid: () => GridState =
+    typeof deps.grid === 'function' ? deps.grid : () => deps.grid as GridState;
 
   const hitsWall = (p: PlayerState): boolean => {
+    const grid = getGrid();
     const { x, y } = p.position;
     const corners: ReadonlyArray<readonly [number, number]> = [
       [x - halfExtent, y - halfExtent],
@@ -37,7 +45,7 @@ export const createWallCollisionFeature = (
       [x + halfExtent - 1, y + halfExtent - 1],
     ];
     for (const [cx, cy] of corners) {
-      if (isBlocked(deps.grid, worldToGrid(deps.grid, { x: cx, y: cy }), deps.tileTypes)) {
+      if (isBlocked(grid, worldToGrid(grid, { x: cx, y: cy }), deps.tileTypes)) {
         return true;
       }
     }

@@ -49,7 +49,7 @@ export const setupWorldScene = async (ctx: SetupContext): Promise<IWorldSceneRun
   const input: IInputPort = createKeyboardInputPort(ctx.scene);
   const movement = createMovementFeature({ events, bounds });
   const interaction = createInteractionFeature({ events });
-  const wallCollision = createWallCollisionFeature({ grid: state.grid, tileTypes });
+  const wallCollision = createWallCollisionFeature({ grid: () => state.grid, tileTypes });
   const hud = createHudFeature({ events, renderer: ctx.deps.hud });
   const save = createSaveGameFeature({
     events,
@@ -70,6 +70,7 @@ export const setupWorldScene = async (ctx: SetupContext): Promise<IWorldSceneRun
   resetKey?.on('down', () => {
     state = createGameState();
     playerEntity.render(state.player);
+    wallLayer.redraw(state.grid);
 
     for (const [id, entity] of interactableEntities) {
       const found = state.interactables.find((i: InteractableState) => i.id === id);
