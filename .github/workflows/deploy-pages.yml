@@ -28,6 +28,10 @@ jobs:
           cache: pnpm
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
         id: pages
+        with:
+          # Auto-enables Pages on first run so forkers don't have to
+          # click Settings → Pages → Source = "GitHub Actions" manually.
+          enablement: true
       - run: pnpm install --frozen-lockfile
       - name: build with public base path
         env:
