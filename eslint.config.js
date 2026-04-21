@@ -172,6 +172,7 @@ export default tseslint.config(
       'vitest.config.ts',
       'playwright.config.ts',
       'eslint.config.js',
+      'commitlint.config.js',
     ],
     rules: {
       'import/no-default-export': 'off',
