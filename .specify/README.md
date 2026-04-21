@@ -20,14 +20,31 @@ prefix automatically; we add it by hand).
 
 ## Updating spec-kit
 
-Because this was installed manually, upgrades are manual too. When you want to
-pick up newer spec-kit templates or commands:
+The cleanest upgrade path uses the official CLI via `uv`:
 
 ```sh
-gh api repos/github/spec-kit/contents/templates/commands --jq '.[].name' \
-  | xargs -I{} gh api repos/github/spec-kit/contents/templates/commands/{} --jq .content \
-  | base64 -d > .claude/commands/speckit/{}
+# One-time setup (already done if you're reading this on the machine that set up the repo):
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv tool install git+https://github.com/github/spec-kit.git
+
+# To pick up new spec-kit templates/commands:
+specify init /tmp/spec-kit-fresh --ai claude --script sh --ignore-agent-tools
+diff -ru /tmp/spec-kit-fresh/.specify .specify
+diff -ru /tmp/spec-kit-fresh/.claude/commands .claude/commands/speckit
+# Cherry-pick the diffs you want; apply with cp.
 ```
 
-(Or install `uv` and run `uvx specify init --ai claude --script sh --force` in
-a throwaway dir and diff the output.)
+Fallback (no `uv`, via `gh` CLI):
+
+```sh
+# Re-fetch commands
+for f in specify plan tasks implement clarify constitution analyze checklist; do
+  gh api repos/github/spec-kit/contents/templates/commands/$f.md --jq .content \
+    | base64 -d > .claude/commands/speckit/$f.md
+done
+# Re-fetch templates and scripts similarly from repos/github/spec-kit/contents/templates/
+# and repos/github/spec-kit/contents/scripts/bash/
+```
+
+Note: after any upgrade, re-apply the `sh: scripts/bash/` → `sh: .specify/scripts/bash/`
+path fix if you used the `gh` fallback (the `specify init` CLI handles this automatically).

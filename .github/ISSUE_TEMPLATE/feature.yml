@@ -1,0 +1,49 @@
+name: Feature request
+description: Propose an improvement to the template itself
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For substantial features in **a game built from this template**, prefer
+        running `/speckit:specify` in your local fork and opening a PR with the
+        resulting `docs/specs/` artifacts. This form is for improvements to
+        **the template itself** (tooling, architecture, docs).
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is the template not doing well today? Who is affected?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should happen instead? Be concrete.
+    validations:
+      required: true
+
+  - type: textarea
+    id: architectural-impact
+    attributes:
+      label: Architectural impact
+      description: |
+        Does this change any of the non-negotiable rules in `docs/ai/contribution-contract.md`
+        or the constitution? If yes, the change will need an ADR before it can land.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What else did you think about? Why reject them?
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: I've read `BUILD_THE_GAME.md` and `docs/ai/architecture.md`
+        - label: This is a template-level improvement, not a game-level feature request

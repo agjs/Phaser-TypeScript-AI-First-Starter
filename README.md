@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./public/assets/images/phaserjs-logo.jpg" alt="Phaser" width="240">
+</p>
+
 # Phaser + TypeScript AI-First Starter
 
 A reusable, strictly-typed, architecturally-enforced starter for Phaser games — built so AI agents can contribute at high velocity without eroding structure.
