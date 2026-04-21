@@ -10,7 +10,7 @@ jobs:
     name: grep-based banned patterns
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: no phaser imports in domain/
         run: |
           if grep -rnE "from ['\"]phaser" src/domain 2>/dev/null; then
