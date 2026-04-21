@@ -1,0 +1,7 @@
+{
+  "id": "brick",
+  "displayName": "Brick",
+  "solid": true,
+  "destructible": true,
+  "displayColor": "#b35a1b"
+}
