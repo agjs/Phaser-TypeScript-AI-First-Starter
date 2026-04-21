@@ -1,0 +1,7 @@
+{
+  "id": "example-level",
+  "displayName": "Example Level",
+  "width": 960,
+  "height": 540,
+  "playerStart": { "x": 100, "y": 100 }
+}

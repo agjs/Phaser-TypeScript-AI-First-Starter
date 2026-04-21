@@ -1,0 +1,2 @@
+export const DEFAULT_WORLD_WIDTH = 960;
+export const DEFAULT_WORLD_HEIGHT = 540;

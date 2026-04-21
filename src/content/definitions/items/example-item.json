@@ -1,0 +1,7 @@
+{
+  "id": "example-coin",
+  "displayName": "Example Coin",
+  "stackable": true,
+  "maxStack": 99,
+  "tags": ["currency", "demo"]
+}

@@ -1,0 +1,2 @@
+export const DEFAULT_INTERACTABLE_RADIUS = 24;
+export const DEFAULT_PLAYER_RADIUS = 16;

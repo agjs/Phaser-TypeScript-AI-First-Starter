@@ -1,0 +1,43 @@
+name: arch-invariants
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  invariants:
+    name: grep-based banned patterns
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: no phaser imports in domain/
+        run: |
+          if grep -rnE "from ['\"]phaser" src/domain 2>/dev/null; then
+            echo "::error::phaser imports found in src/domain/ — domain must be engine-agnostic."
+            exit 1
+          fi
+      - name: no Math.random in domain/
+        run: |
+          if grep -rn "Math\.random" src/domain 2>/dev/null; then
+            echo "::error::Math.random found in src/domain/ — inject IRandomPort."
+            exit 1
+          fi
+      - name: no Date.now or new Date in domain/
+        run: |
+          if grep -rnE "Date\.now|new Date\(" src/domain 2>/dev/null; then
+            echo "::error::Date access found in src/domain/ — inject ITimePort."
+            exit 1
+          fi
+      - name: no localStorage in domain/
+        run: |
+          if grep -rn "localStorage\|sessionStorage" src/domain 2>/dev/null; then
+            echo "::error::Storage access found in src/domain/ — use ISaveGamePort."
+            exit 1
+          fi
+      - name: no runtime imports in domain/
+        run: |
+          if grep -rnE "from ['\"]@runtime|from ['\"]\.+/runtime" src/domain 2>/dev/null; then
+            echo "::error::Runtime import found in src/domain/ — domain must not depend on runtime."
+            exit 1
+          fi

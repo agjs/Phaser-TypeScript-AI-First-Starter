@@ -1,0 +1,30 @@
+node_modules/
+dist/
+dist-ssr/
+coverage/
+.vite/
+.turbo/
+.cache/
+
+# Test artifacts
+playwright-report/
+test-results/
+.nyc_output/
+
+# Editor
+.DS_Store
+.idea/
+*.swp
+*.swo
+*.log
+
+# Local env
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+*.tsbuildinfo
+
+# OS
+Thumbs.db

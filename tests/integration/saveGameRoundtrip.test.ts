@@ -1,0 +1,95 @@
+/**
+ * Integration test: end-to-end roundtrip of the save-game vertical slice.
+ *
+ * Plays a few ticks, overlaps an interactable to raise the score, requests a
+ * save, reloads into a fresh event bus, and confirms the saved score comes
+ * back out.
+ *
+ * Runs against fake ports — no Phaser, no jsdom-specific APIs.
+ */
+
+import { createGameState, type GameEventMap, type GameState } from '@domain/core';
+import { createHudFeature, type IHudRenderer } from '@features/hud';
+import { createInteractionFeature } from '@features/interaction';
+import { createMovementFeature } from '@features/movement';
+import { createSaveGameFeature } from '@features/save-game';
+import { createEventBus } from '@shared/events';
+import { createFakeSaveGamePort } from '@shared/testing';
+import { describe, expect, it, vi } from 'vitest';
+
+const bounds = { min: { x: 0, y: 0 }, max: { x: 960, y: 540 } };
+
+const fakeHud = (): IHudRenderer & { readonly last: () => number } => {
+  let last = 0;
+  return {
+    setScore(s) {
+      last = s;
+    },
+    last: () => last,
+  };
+};
+
+const tick = (
+  state: GameState,
+  intent: { dx: number; dy: number },
+  deltaMs: number,
+  events: ReturnType<typeof createEventBus<GameEventMap>>,
+): GameState => {
+  const movement = createMovementFeature({ events, bounds });
+  const interaction = createInteractionFeature({ events });
+  return interaction.tick(movement.tick(state, intent, deltaMs));
+};
+
+describe('save-game roundtrip', () => {
+  it('persists score across a save/load cycle', async () => {
+    const port = createFakeSaveGamePort();
+
+    // --- session 1: play, save ---
+    {
+      const events = createEventBus<GameEventMap>();
+      const hud = fakeHud();
+      createHudFeature({ events, renderer: hud });
+
+      let state = createGameState();
+      const save = createSaveGameFeature({
+        events,
+        port,
+        getState: () => state,
+      });
+
+      // Move the player onto the first interactable's position to trigger overlap.
+      state = {
+        ...state,
+        player: { ...state.player, position: state.interactables[0]!.position },
+      };
+      state = tick(state, { dx: 0, dy: 0 }, 16, events);
+
+      expect(hud.last()).toBe(1);
+      expect(state.progression.score).toBe(1);
+
+      const saveCompleted = vi.fn();
+      events.on('saveGame.completed', saveCompleted);
+      events.emit('saveGame.requested', {});
+      await new Promise((r) => setTimeout(r, 0));
+      expect(saveCompleted).toHaveBeenCalledWith({ ok: true });
+
+      save.dispose();
+    }
+
+    // --- session 2: load, verify HUD reflects saved score ---
+    {
+      const events = createEventBus<GameEventMap>();
+      const hud = fakeHud();
+      createHudFeature({ events, renderer: hud });
+      const save = createSaveGameFeature({
+        events,
+        port,
+        getState: () => createGameState(),
+      });
+
+      const loaded = await save.load();
+      expect(loaded?.score).toBe(1);
+      expect(hud.last()).toBe(1);
+    }
+  });
+});
