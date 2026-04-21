@@ -91,6 +91,27 @@ pnpm dev      # confirm it boots
 
 If `pnpm check` is green, you're good to go. If not, fix the root cause before writing any code — the rails need to work.
 
+### Step 3.5 — One-time repo settings (per fork)
+
+There are three GitHub settings the template can't flip for you, because the default `GITHUB_TOKEN` doesn't have `administration: write`. Do these once right after forking:
+
+| Setting | Path | Why |
+| --- | --- | --- |
+| **Pages** | Settings → Pages → Build and deployment → Source: **"GitHub Actions"** | The `deploy-pages` workflow 404s without this; the workflow can't enable Pages itself without a broader token. |
+| **Actions may open PRs** | Settings → Actions → General → Workflow permissions → **[x] Allow GitHub Actions to create and approve pull requests** | So `release-please` can cut release PRs from conventional commits. |
+| **Template repository** | Settings → General → **[x] Template repository** | So *your* forkers see the "Use this template" button. |
+
+Alternatively you can do the first two from the CLI:
+
+```sh
+# Pages (Source = Actions) — needs a PAT with `administration: write`
+gh api -X POST /repos/<owner>/<repo>/pages -f 'build_type=workflow'
+
+# Let workflows open PRs
+gh api -X PUT /repos/<owner>/<repo>/actions/permissions/workflow \
+  -f default_workflow_permissions=write -F can_approve_pull_request_reviews=true
+```
+
 ### Step 4 — Understand the demo slice
 
 The forked repo ships with a tiny vertical slice:

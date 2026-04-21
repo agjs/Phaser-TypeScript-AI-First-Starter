@@ -19,6 +19,14 @@ A reusable, strictly-typed, architecturally-enforced starter for Phaser games �
 
 > **Use this as a GitHub template.** Click **"Use this template"** on the repo page, fork it into a new repo for each game, then read [`BUILD_THE_GAME.md`](./BUILD_THE_GAME.md) to walk from empty fork to shipped feature.
 
+### After forking: one-time repo setup
+
+1. **Enable GitHub Pages** — `Settings → Pages → Build and deployment → Source: "GitHub Actions"`. Without this the `deploy-pages` workflow 404s on the first run.
+2. **Allow Actions to open PRs** (so release-please can cut release PRs) — `Settings → Actions → General → Workflow permissions → [x] Allow GitHub Actions to create and approve pull requests`.
+3. **Flip "Template repository"** — `Settings → General → Template repository` so your own "Use this template" button works.
+
+Everything else (CI, Scorecard, CodeQL, Dependabot) works out of the box.
+
 ## What you get out of the box
 
 - **Working vertical slice** — one player, three pickups, live HUD, save/load to localStorage. Proves the architecture end-to-end and serves as the pattern to mimic.
