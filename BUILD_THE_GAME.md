@@ -2,6 +2,8 @@
 
 This document is the end-to-end walkthrough for building a game using this template. It's written for two audiences at once: a human who just clicked **"Use this template"**, and an AI agent that has joined the project mid-flight. Read it front-to-back once; come back for the sections you need.
 
+> **First time making a game?** Read [`docs/learn/`](./docs/learn/README.md) **before** this document. It covers the mental-model shift, AI asset generation, game-design fundamentals, and the solo-dev workflow. This document assumes you already know what a sprite, tilemap, and core loop are. The `learn/` primer will teach you all three in 2.5 hours.
+
 ---
 
 ## 1. Why AI-first?
@@ -381,6 +383,7 @@ Split it. `max-lines` is a 400-line soft limit for a reason.
 
 | Document                                                              | Covers                                     |
 | --------------------------------------------------------------------- | ------------------------------------------ |
+| [`docs/learn/`](./docs/learn/README.md)                               | **Start here if new to game dev** — mental model, core concepts, AI asset generation, game design, solo workflow |
 | [`docs/ai/architecture.md`](./docs/ai/architecture.md)                | Full layer diagram + golden rule           |
 | [`docs/ai/contribution-contract.md`](./docs/ai/contribution-contract.md) | Ten non-negotiable rules                 |
 | [`docs/ai/naming-conventions.md`](./docs/ai/naming-conventions.md)    | File suffixes, interface names, imports    |

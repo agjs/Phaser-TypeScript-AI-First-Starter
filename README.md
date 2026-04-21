@@ -15,7 +15,9 @@
 
 # Phaser + TypeScript AI-First Starter
 
-A reusable, strictly-typed, architecturally-enforced starter for Phaser games — built so AI agents can contribute at high velocity without eroding structure.
+A reusable, strictly-typed, architecturally-enforced starter for Phaser games — built so AI agents can contribute at high velocity without eroding structure, and so **a programmer who has never shipped a game can become a one-person game studio in a single weekend.**
+
+Backend engineer, tech lead, web developer who always wanted to make games but never had the time? Start with [`docs/learn/`](./docs/learn/README.md) — a 2.5-hour primer that bridges the gap between "I can write code" and "I know how to use AI to generate art, design a core loop, and ship a playable game on itch.io."
 
 > **Use this as a GitHub template.** Click **"Use this template"** on the repo page, fork it into a new repo for each game, then read [`BUILD_THE_GAME.md`](./BUILD_THE_GAME.md) to walk from empty fork to shipped feature.
 
@@ -41,6 +43,7 @@ Everything else (CI, Scorecard, CodeQL, Dependabot) works out of the box.
 
 | If you are...                               | Read next                                                       |
 | ------------------------------------------- | --------------------------------------------------------------- |
+| **A programmer who never shipped a game**   | [`docs/learn/`](./docs/learn/README.md) — 2.5-hour primer on game dev, AI asset generation, game design, and solo workflow |
 | **A human forking this to build a game**    | [`BUILD_THE_GAME.md`](./BUILD_THE_GAME.md) — the full walkthrough |
 | **An AI agent in a fresh session**          | [`CLAUDE.md`](./CLAUDE.md) / [`AGENTS.md`](./AGENTS.md) + [`docs/ai/catalog.md`](./docs/ai/catalog.md) |
 | **Just evaluating the architecture**        | [`docs/ai/architecture.md`](./docs/ai/architecture.md) + this README |
