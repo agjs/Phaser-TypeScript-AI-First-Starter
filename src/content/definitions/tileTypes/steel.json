@@ -1,0 +1,7 @@
+{
+  "id": "steel",
+  "displayName": "Steel",
+  "solid": true,
+  "destructible": false,
+  "displayColor": "#9aa0a6"
+}

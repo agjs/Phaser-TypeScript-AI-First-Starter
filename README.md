@@ -2,6 +2,17 @@
   <img src="./public/assets/images/phaserjs-logo.png" alt="Phaser" width="480">
 </p>
 
+<p align="center">
+  <a href="https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/actions/workflows/ci.yml"><img src="https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/actions/workflows/codeql.yml"><img src="https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/actions/workflows/codeql.yml/badge.svg" alt="CodeQL"></a>
+  <a href="https://scorecard.dev/viewer/?uri=github.com/agjs/Phaser-TypeScript-AI-First-Starter"><img src="https://api.securityscorecards.dev/projects/github.com/agjs/Phaser-TypeScript-AI-First-Starter/badge" alt="OpenSSF Scorecard"></a>
+  <img src="https://img.shields.io/badge/Phaser-4.0-blue?logo=phaser" alt="Phaser 4">
+  <img src="https://img.shields.io/badge/TypeScript-6-3178c6?logo=typescript" alt="TypeScript 6">
+  <img src="https://img.shields.io/badge/Node-%3E%3D22.22-339933?logo=node.js" alt="Node">
+  <img src="https://img.shields.io/badge/pnpm-10-F69220?logo=pnpm" alt="pnpm">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT">
+</p>
+
 # Phaser + TypeScript AI-First Starter
 
 A reusable, strictly-typed, architecturally-enforced starter for Phaser games — built so AI agents can contribute at high velocity without eroding structure.

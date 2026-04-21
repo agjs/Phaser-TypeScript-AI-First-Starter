@@ -17,7 +17,7 @@ const ARCH_RULES = [
   { from: 'domain', allow: ['domain', 'shared'] },
   { from: 'content', allow: ['content', 'shared'] },
   { from: 'shared', allow: ['shared'] },
-  { from: 'runtime', allow: ['runtime', 'domain', 'shared', 'features'] },
+  { from: 'runtime', allow: ['runtime', 'domain', 'shared', 'features', 'content'] },
   { from: 'features', allow: ['features', 'domain', 'runtime', 'content', 'shared'] },
   { from: 'app', allow: ['app', 'features', 'runtime', 'domain', 'content', 'shared'] },
 ];
@@ -172,6 +172,7 @@ export default tseslint.config(
       'vitest.config.ts',
       'playwright.config.ts',
       'eslint.config.js',
+      'commitlint.config.js',
     ],
     rules: {
       'import/no-default-export': 'off',
