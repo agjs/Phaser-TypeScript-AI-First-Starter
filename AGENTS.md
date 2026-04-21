@@ -28,6 +28,10 @@ One obvious home per concern. Do not place domain logic in Phaser scenes. Do not
 | New ADR                | `pnpm new:adr "<Title>"`      |
 | Refresh catalog        | `pnpm catalog`                |
 
+## Feature workflow
+
+For non-trivial features: `/speckit:specify` → `/speckit:clarify` → `/speckit:plan` → `/speckit:tasks` → `/speckit:analyze` → `/speckit:implement`. Artifacts land in `docs/specs/<NNN-feature>/`. See `BUILD_THE_GAME.md` for the full walkthrough.
+
 ## Before claiming done
 
 ```sh

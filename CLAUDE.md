@@ -47,6 +47,21 @@ Must pass. If a hook fails, fix the root cause — do not bypass with `--no-veri
 
 `docs/ai/catalog.md` is the canonical index of domain modules, features, scenes, ports, and content. Read it **before** searching the codebase. Regenerate with `pnpm catalog` if stale.
 
+## Feature workflow (GitHub Spec Kit)
+
+For non-trivial features, use the spec-driven workflow instead of going straight to code:
+
+1. `/speckit:specify <feature description>` — produce a spec in `docs/specs/<NNN>/spec.md`
+2. `/speckit:clarify` — resolve any `[NEEDS CLARIFICATION]` markers
+3. `/speckit:plan` — produce a plan (+ research, data-model, contracts)
+4. `/speckit:tasks` — break the plan into ordered, atomic tasks
+5. `/speckit:analyze` — cross-check spec ⇄ plan ⇄ tasks for gaps
+6. `/speckit:implement` — walk through tasks one at a time
+
+Every step references `.specify/memory/constitution.md`, which points back to `docs/ai/architecture.md` and `docs/ai/contribution-contract.md`. Specs, plans, and tasks that violate constitutional rules must be revised, not merged.
+
+For a tiny change (typo, one-line fix), skip spec-kit and just do the change.
+
 ## Contributing new patterns
 
 If you want to break a rule, write an ADR with `pnpm new:adr "<Title>"` first. Architectural decisions must be recorded, not argued per-session.
