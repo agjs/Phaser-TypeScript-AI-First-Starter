@@ -1,6 +1,6 @@
 {
   "name": "phaser-ts-starter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "AI-first Phaser + TypeScript game starter template",
