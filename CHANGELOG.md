@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/compare/v0.1.1...v0.1.2) (2026-04-22)
+
+
+### Bug Fixes
+
+* **specify:** use docs/specs/ for spec dir (matches CLAUDE.md) ([77c8f0d](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/commit/77c8f0d08be25d0d3e0fc58518bf25c4a4309cde))
+
 ## [0.1.1](https://github.com/agjs/Phaser-TypeScript-AI-First-Starter/compare/v0.1.0...v0.1.1) (2026-04-21)
 
 
